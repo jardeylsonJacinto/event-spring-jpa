@@ -37,8 +37,7 @@ public class EventoService {
 		eventoRepository.deleteById(id);
 	}
 
-	// POST Adicionar um Evento a um Local
-	public Evento createEvento(Long localId, Evento eventoRequest) {
+	public Evento criarEvento(Long localId, Evento eventoRequest) {
 		return localRepository.findById(localId)
 				.map(local -> {
 					eventoRequest.setLocal(local);
@@ -48,7 +47,6 @@ public class EventoService {
 						() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Local não encontrado com id = " + localId));
 	}
 
-	// GET Consultar Eventos por Local
 	public List<Evento> consultaEventosPorLocalId(Long localId) {
 		if (!localRepository.existsById(localId)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Local não encontrado com id = " + localId);
@@ -56,7 +54,6 @@ public class EventoService {
 		return eventoRepository.findByLocalId(localId);
 	}
 
-	// DELETE Eventos por Local
 	public void deletaEventosPorLocalId(Long localId) {
 		if (!localRepository.existsById(localId)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Local não encontrado com id = " + localId);
