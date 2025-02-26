@@ -8,7 +8,7 @@ import com.acc.event.model.Evento;
 
 import jakarta.transaction.Transactional;
 
-public interface EventRepository extends JpaRepository<Evento, Long> {
+public interface EventoRepository extends JpaRepository<Evento, Long> {
   List<Evento> findByLocalId(Long localId);
 
   @Transactional
